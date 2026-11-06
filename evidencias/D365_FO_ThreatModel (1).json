@@ -1,0 +1,3915 @@
+{
+  "version": "2.6.2",
+  "summary": {
+    "title": "D365_FO_ThreatModel",
+    "owner": "Billy Alejandro Velásquez Flores",
+    "description": "Modelo de amenazas STRIDE de una implementación de referencia de D365 F&O (Finanzas y Compras) con Entra ID, integración bancaria (Logic Apps / Service Bus) y Power BI. Curso: Seguridad de Aplicaciones - Maestría en Seguridad Informática, UMG.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [
+      {
+        "name": "Billy Alejandro Velásquez Flores"
+      }
+    ],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "DFD Nivel 0 - Contexto",
+        "diagramType": "STRIDE",
+        "placeholder": "Nuevo diagrama STRIDE",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [
+          {
+            "position": {
+              "x": 20,
+              "y": 40
+            },
+            "size": {
+              "width": 220,
+              "height": 520
+            },
+            "attrs": {
+              "headerText": {
+                "text": "TB01 Red corporativa del cliente"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 1,
+            "id": "b589e9bd-ec86-4a74-886f-2e89ad37d34f",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB01 Red corporativa del cliente",
+              "description": "Usuarios internos",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 20,
+              "y": 600
+            },
+            "size": {
+              "width": 220,
+              "height": 150
+            },
+            "attrs": {
+              "headerText": {
+                "text": "TB02 Internet (zona no confiable)"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 1,
+            "id": "9bda6315-497f-4ca3-a60c-f55bc34dcce4",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB02 Internet (zona no confiable)",
+              "description": "Proveedores externos",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 1000,
+              "y": 240
+            },
+            "size": {
+              "width": 220,
+              "height": 150
+            },
+            "attrs": {
+              "headerText": {
+                "text": "TB05 Banco (tercero)"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 1,
+            "id": "93e39bfc-6336-4098-820f-8608318597b1",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB05 Banco (tercero)",
+              "description": "Endpoint bancario",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 420,
+              "y": 160
+            },
+            "size": {
+              "width": 360,
+              "height": 360
+            },
+            "attrs": {
+              "headerText": {
+                "text": "TB06 Solución ERP (límite del sistema)"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 1,
+            "id": "2dc1c0fd-8d7c-4848-a9bb-9ca16329eabd",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB06 Solución ERP (límite del sistema)",
+              "description": "Límite del sistema modelado",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 50,
+              "y": 70
+            },
+            "size": {
+              "width": 160,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "EE01 Usuario de Contabilidad"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 10,
+            "id": "19992673-c32b-4deb-b3ac-d49f079c4b70",
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE01 Usuario de Contabilidad",
+              "description": "Registra asientos, facturas y pagos",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 50,
+              "y": 180
+            },
+            "size": {
+              "width": 160,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "EE02 Usuario de Compras"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 10,
+            "id": "df1c6a90-7179-4807-83e9-50bf03d72cb3",
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE02 Usuario de Compras",
+              "description": "Gestiona OC y proveedores",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 50,
+              "y": 290
+            },
+            "size": {
+              "width": 160,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "EE03 Administrador D365"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 10,
+            "id": "207247b7-4917-432b-a15a-5f2298f8f431",
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE03 Administrador D365",
+              "description": "Administra roles y seguridad",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 50,
+              "y": 400
+            },
+            "size": {
+              "width": 160,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "EE05 Analista BI"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 10,
+            "id": "0a2699ba-bd74-4896-954e-0ba6633a3ba1",
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE05 Analista BI",
+              "description": "Consulta reportes en Power BI",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 50,
+              "y": 640
+            },
+            "size": {
+              "width": 160,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "EE04 Proveedor externo"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 10,
+            "id": "be8df1e2-3768-4987-b1f3-db7c979d1b74",
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE04 Proveedor externo",
+              "description": "Portal de colaboración con cuenta invitada",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 1030,
+              "y": 280
+            },
+            "size": {
+              "width": 160,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "EE06 Banco"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 10,
+            "id": "3755cdd1-d750-404f-85d2-2affa644269c",
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE06 Banco",
+              "description": "Recibe instrucciones de pago",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 540,
+              "y": 280
+            },
+            "size": {
+              "width": 120,
+              "height": 120
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "P00 Solución ERP D365 F&O (Finanzas y Compras)"
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "id": "87007ad2-5188-4f15-bb10-abbcc95cfba3",
+            "data": {
+              "type": "tm.Process",
+              "name": "P00 Solución ERP D365 F&O (Finanzas y Compras)",
+              "description": "Sistema completo como un solo proceso",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "privilegeLevel": "",
+              "isWebApplication": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": "classic"
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "a52dda61-26b7-4992-8355-1a4b0a36cb5e",
+            "source": {
+              "cell": "19992673-c32b-4deb-b3ac-d49f079c4b70"
+            },
+            "target": {
+              "cell": "87007ad2-5188-4f15-bb10-abbcc95cfba3"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F0-01 Transacciones contables y pagos",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F0-01 Transacciones contables y pagos",
+              "description": "Criticidad: Crítica",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": "classic"
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "433a873b-892b-4444-a8bf-f0cc54afe27f",
+            "source": {
+              "cell": "df1c6a90-7179-4807-83e9-50bf03d72cb3"
+            },
+            "target": {
+              "cell": "87007ad2-5188-4f15-bb10-abbcc95cfba3"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F0-02 Órdenes de compra y datos de proveedor",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F0-02 Órdenes de compra y datos de proveedor",
+              "description": "Criticidad: Alta",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "c5f80f38-cb2c-47a9-82fd-a7cd3d2539e7",
+            "source": {
+              "cell": "207247b7-4917-432b-a15a-5f2298f8f431"
+            },
+            "target": {
+              "cell": "87007ad2-5188-4f15-bb10-abbcc95cfba3"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F0-03 Configuración, roles y seguridad",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F0-03 Configuración, roles y seguridad",
+              "description": "Criticidad: Crítica",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": "classic"
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "e441573f-fa57-4c43-bc3f-5c8393b145ed",
+            "source": {
+              "cell": "0a2699ba-bd74-4896-954e-0ba6633a3ba1"
+            },
+            "target": {
+              "cell": "87007ad2-5188-4f15-bb10-abbcc95cfba3"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F0-04 Consulta de reportes financieros",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F0-04 Consulta de reportes financieros",
+              "description": "Criticidad: Media",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": "classic"
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "c450de69-c527-488f-a701-d95920d0ca77",
+            "source": {
+              "cell": "be8df1e2-3768-4987-b1f3-db7c979d1b74"
+            },
+            "target": {
+              "cell": "87007ad2-5188-4f15-bb10-abbcc95cfba3"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F0-05 Confirmaciones de OC y facturas",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F0-05 Confirmaciones de OC y facturas",
+              "description": "Criticidad: Alta",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS (Internet)",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": "classic"
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "4522d0f2-017c-48c5-96e0-244a25d93f17",
+            "source": {
+              "cell": "87007ad2-5188-4f15-bb10-abbcc95cfba3"
+            },
+            "target": {
+              "cell": "3755cdd1-d750-404f-85d2-2affa644269c"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F0-06 Instrucciones de pago, acuses y extractos",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F0-06 Instrucciones de pago, acuses y extractos",
+              "description": "Criticidad: Crítica",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "mTLS / canal bancario (Internet)",
+              "threats": []
+            }
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "title": "DFD Nivel 1 - Procesos, almacenes y trust boundaries",
+        "diagramType": "STRIDE",
+        "placeholder": "Nuevo diagrama STRIDE",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [
+          {
+            "position": {
+              "x": 20,
+              "y": 40
+            },
+            "size": {
+              "width": 220,
+              "height": 520
+            },
+            "attrs": {
+              "headerText": {
+                "text": "TB01 Red corporativa del cliente"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 1,
+            "id": "6629b393-82ac-421b-b622-fd205b765c83",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB01 Red corporativa del cliente",
+              "description": "Usuarios internos",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 20,
+              "y": 600
+            },
+            "size": {
+              "width": 220,
+              "height": 150
+            },
+            "attrs": {
+              "headerText": {
+                "text": "TB02 Internet (zona no confiable)"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 1,
+            "id": "dbdcee79-c23e-4b20-a696-c87bde2eadba",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB02 Internet (zona no confiable)",
+              "description": "Proveedores externos",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 320,
+              "y": 40
+            },
+            "size": {
+              "width": 720,
+              "height": 760
+            },
+            "attrs": {
+              "headerText": {
+                "text": "TB03 Plataforma Microsoft SaaS"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 1,
+            "id": "080ff583-f632-4042-9c04-86b87c2f117c",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB03 Plataforma Microsoft SaaS",
+              "description": "D365 F&O, Entra ID, BD D365 y Power BI",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 1120,
+              "y": 40
+            },
+            "size": {
+              "width": 380,
+              "height": 760
+            },
+            "attrs": {
+              "headerText": {
+                "text": "TB04 Suscripción Azure del cliente"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 1,
+            "id": "4960b95c-f442-4191-b341-f68c5bb74c8e",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB04 Suscripción Azure del cliente",
+              "description": "Logic Apps, Service Bus, conector, Key Vault, Log Analytics, Blob",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 1580,
+              "y": 300
+            },
+            "size": {
+              "width": 220,
+              "height": 150
+            },
+            "attrs": {
+              "headerText": {
+                "text": "TB05 Banco (tercero)"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 1,
+            "id": "327fb820-6832-46be-9ac7-59122c5ce571",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB05 Banco (tercero)",
+              "description": "Endpoint bancario",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 50,
+              "y": 70
+            },
+            "size": {
+              "width": 160,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "EE01 Usuario de Contabilidad"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 10,
+            "id": "53a3fe8d-723c-40c8-855d-bf7f0f03486c",
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE01 Usuario de Contabilidad",
+              "description": "Registra asientos, facturas y pagos",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 50,
+              "y": 180
+            },
+            "size": {
+              "width": 160,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "EE02 Usuario de Compras"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 10,
+            "id": "5601dfc9-2a70-470d-8af0-61b9665f3700",
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE02 Usuario de Compras",
+              "description": "Gestiona OC y proveedores",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 50,
+              "y": 290
+            },
+            "size": {
+              "width": 160,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "EE03 Administrador D365"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 10,
+            "id": "3c676f41-ec30-414a-bd17-858435556679",
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE03 Administrador D365",
+              "description": "Administra roles y seguridad",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "2fde1e30-50d1-481a-9d6a-48085b9dac26",
+                  "title": "T08 [Medio] Cambios administrativos sin atribución clara",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": "3",
+                  "description": "Cambios administrativos sin atribución clara. (Impacto: Alto; Probabilidad: Baja; Puntaje: 3; Riesgo inherente: Medio).",
+                  "mitigation": "Preventivo: Gestión de cambios con aprobación; PIM con justificación; registro de actividad administrativa. Detectivo: Alertas sobre cambios de configuración y de roles. Correctivo: Revertir los cambios y revisar el registro administrativo. Riesgo residual esperado: Bajo (Impacto Medio / Probabilidad Baja; puntaje 2)."
+                }
+              ],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 50,
+              "y": 400
+            },
+            "size": {
+              "width": 160,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "EE05 Analista BI"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 10,
+            "id": "670b83b7-3e7d-493c-9f73-6a4a648be326",
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE05 Analista BI",
+              "description": "Consulta reportes",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "0c4685aa-58e1-41d2-aaa9-b83cd6f79ca2",
+                  "title": "T21 [Bajo] El analista BI niega haber exportado o compartido informes",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": "2",
+                  "description": "El analista BI niega haber exportado o compartido informes. (Impacto: Medio; Probabilidad: Baja; Puntaje: 2; Riesgo inherente: Bajo).",
+                  "mitigation": "Preventivo: Habilitar registros de actividad de Power BI; cuentas nominales. Detectivo: Revisión periódica de la actividad de exportación. Correctivo: Consultar los registros y ajustar permisos. Riesgo residual esperado: Bajo (Impacto Bajo / Probabilidad Baja; puntaje 1)."
+                }
+              ],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 50,
+              "y": 640
+            },
+            "size": {
+              "width": 160,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "EE04 Proveedor externo"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 10,
+            "id": "92056324-c1a0-472a-9735-17adc203c4bb",
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE04 Proveedor externo",
+              "description": "Portal de colaboración con cuenta invitada",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "ed91ff05-6270-495a-9f45-9200eb2c8ee6",
+                  "title": "T02 [Crítico] Suplantación de proveedor externo en el portal de colaboración",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Spoofing",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": "9",
+                  "description": "Suplantación de proveedor externo en el portal de colaboración. (Impacto: Alto; Probabilidad: Alta; Puntaje: 9; Riesgo inherente: Crítico).",
+                  "mitigation": "Preventivo: Cuentas invitadas (Entra B2B) con MFA obligatorio; verificación fuera de banda para cambios de datos bancarios; revisión periódica de cuentas externas. Detectivo: Alertas por cambios de datos bancarios del proveedor; monitoreo de inicios de sesión externos anómalos. Correctivo: Deshabilitar la cuenta, revertir cambios y validar facturas y pagos afectados con el proveedor real. Riesgo residual esperado: Medio (Impacto Alto / Probabilidad Baja; puntaje 3)."
+                }
+              ],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 1610,
+              "y": 340
+            },
+            "size": {
+              "width": 160,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "EE06 Banco"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 10,
+            "id": "31ed1251-abae-4250-9c7c-00b9697340f6",
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE06 Banco",
+              "description": "Recibe instrucciones de pago",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 420,
+              "y": 80
+            },
+            "size": {
+              "width": 120,
+              "height": 120
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "P01 Microsoft Entra ID"
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "id": "69db3c30-242b-4cab-8772-d4ade8c609e1",
+            "data": {
+              "type": "tm.Process",
+              "name": "P01 Microsoft Entra ID",
+              "description": "Autenticación, MFA, acceso condicional y tokens",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "4be9d79d-8550-4326-934e-781e488fd61f",
+                  "title": "T01 [Crítico] Suplantación de usuarios financieros por phishing/AiTM y fatiga de MFA",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Spoofing",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": "12",
+                  "description": "Suplantación de usuarios financieros por phishing/AiTM y fatiga de MFA. (Impacto: Crítico; Probabilidad: Alta; Puntaje: 12; Riesgo inherente: Crítico).",
+                  "mitigation": "Preventivo: MFA resistente a phishing (FIDO2/passkeys, number matching); acceso condicional (dispositivo conforme, ubicación, riesgo de sesión); protección de tokens; capacitación anti-phishing. Detectivo: Alertas de Entra ID Protection por inicios de sesión riesgosos; correlación en el SIEM; alertas de viaje imposible. Correctivo: Revocar sesiones y tokens, restablecer credenciales y MFA, revisar la actividad en D365 y contener el dispositivo. Riesgo residual esperado: Medio (Impacto Crítico / Probabilidad Baja; puntaje 4)."
+                },
+                {
+                  "id": "88c01bc6-daf7-4f03-a874-5635ca7ba4eb",
+                  "title": "T04 [Alto] Compromiso de cuenta administrativa con privilegios permanentes",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": "8",
+                  "description": "Compromiso de cuenta administrativa con privilegios permanentes. (Impacto: Crítico; Probabilidad: Media; Puntaje: 8; Riesgo inherente: Alto).",
+                  "mitigation": "Preventivo: Privileged Identity Management (acceso justo a tiempo); cuentas administrativas separadas; estaciones de trabajo privilegiadas; cuentas de emergencia protegidas y monitoreadas. Detectivo: Alertas de activación y uso de roles privilegiados; revisión de cambios de roles en el SIEM. Correctivo: Revocar roles y credenciales, rotar secretos, revisar cambios recientes de configuración y restaurar valores seguros. Riesgo residual esperado: Medio (Impacto Crítico / Probabilidad Baja; puntaje 4)."
+                }
+              ],
+              "privilegeLevel": "",
+              "isWebApplication": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false
+            }
+          },
+          {
+            "position": {
+              "x": 740,
+              "y": 240
+            },
+            "size": {
+              "width": 120,
+              "height": 120
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "P02 D365 F&O - Finanzas"
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "id": "cb629046-ff8e-4d57-b84e-00d27b155490",
+            "data": {
+              "type": "tm.Process",
+              "name": "P02 D365 F&O - Finanzas",
+              "description": "CxP, libro mayor, pagos y conciliación",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "d411d017-ef30-4e58-beaf-74bfb528505f",
+                  "title": "T03 [Crítico] Violación de segregación de funciones por acumulación de roles",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": "12",
+                  "description": "Violación de segregación de funciones por acumulación de roles. (Impacto: Crítico; Probabilidad: Alta; Puntaje: 12; Riesgo inherente: Crítico).",
+                  "mitigation": "Preventivo: Reglas de segregación de funciones (SoD) en D365; rol mínimo necesario; revisiones trimestrales de acceso; aprobación por workflow. Detectivo: Reportes de conflictos SoD; alertas por pagos creados y liberados por el mismo usuario; auditoría interna. Correctivo: Retirar roles en conflicto, revertir transacciones sospechosas y abrir investigación. Riesgo residual esperado: Medio (Impacto Alto / Probabilidad Baja; puntaje 3)."
+                },
+                {
+                  "id": "804f3723-cb76-4b32-b0b9-4e701f47a184",
+                  "title": "T07 [Alto] Negación de aprobaciones y pagos por trazabilidad insuficiente",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Repudiation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": "6",
+                  "description": "Negación de aprobaciones y pagos por trazabilidad insuficiente. (Impacto: Alto; Probabilidad: Media; Puntaje: 6; Riesgo inherente: Alto).",
+                  "mitigation": "Preventivo: Cuentas nominales (sin cuentas compartidas); database logging en tablas críticas; aprobaciones con registro de usuario y fecha; retención de logs según política. Detectivo: Revisión periódica de bitácoras; pruebas de auditoría interna sobre trazabilidad. Correctivo: Reconstruir evidencia desde logs de Entra ID y D365; ajustar la configuración de auditoría. Riesgo residual esperado: Bajo (Impacto Medio / Probabilidad Baja; puntaje 2)."
+                },
+                {
+                  "id": "0a4e4bdb-acc0-4a29-a1c8-51eee3101509",
+                  "title": "T12 [Alto] Indisponibilidad de D365 durante cierres contables",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 12,
+                  "score": "6",
+                  "description": "Indisponibilidad de D365 durante cierres contables. (Impacto: Alto; Probabilidad: Media; Puntaje: 6; Riesgo inherente: Alto).",
+                  "mitigation": "Preventivo: Gestión de límites y priorización de integraciones (throttling); programación de lotes fuera de horarios pico; plan de continuidad con procedimientos manuales. Detectivo: Monitoreo de Service Health y de latencia; alertas de errores de integración. Correctivo: Pausar integraciones no críticas, escalar con soporte de Microsoft y activar el plan de continuidad. Riesgo residual esperado: Medio (Impacto Medio / Probabilidad Media; puntaje 4)."
+                }
+              ],
+              "privilegeLevel": "",
+              "isWebApplication": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false
+            }
+          },
+          {
+            "position": {
+              "x": 420,
+              "y": 440
+            },
+            "size": {
+              "width": 120,
+              "height": 120
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "P03 D365 F&O - Compras"
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "id": "ce572f5e-2763-437f-b9f0-280d4593e030",
+            "data": {
+              "type": "tm.Process",
+              "name": "P03 D365 F&O - Compras",
+              "description": "OC, proveedores y portal de colaboración",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "ea6091b8-96e6-4d77-900c-823d4cc3d2b8",
+                  "title": "T05 [Crítico] Alteración de datos maestros de proveedores (cuenta bancaria)",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Tampering",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": "12",
+                  "description": "Alteración de datos maestros de proveedores (cuenta bancaria). (Impacto: Crítico; Probabilidad: Alta; Puntaje: 12; Riesgo inherente: Crítico).",
+                  "mitigation": "Preventivo: Workflow de aprobación para cambios en datos maestros; doble control; verificación por llamada a un contacto conocido; restricción de roles de mantenimiento de proveedores. Detectivo: Reporte de cambios de cuentas bancarias; alerta cuando un cambio es seguido por un pago en pocos días; database logging en tablas de proveedores. Correctivo: Bloquear al proveedor, revertir el cambio, recuperar fondos con el banco y revisar pagos recientes. Riesgo residual esperado: Medio (Impacto Alto / Probabilidad Baja; puntaje 3)."
+                }
+              ],
+              "privilegeLevel": "",
+              "isWebApplication": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false
+            }
+          },
+          {
+            "position": {
+              "x": 420,
+              "y": 640
+            },
+            "size": {
+              "width": 120,
+              "height": 120
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "P05 Power BI Service"
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "id": "b91148a0-2c60-4039-9fb4-1df6b8befb3d",
+            "data": {
+              "type": "tm.Process",
+              "name": "P05 Power BI Service",
+              "description": "Reportes y paneles financieros",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "adb178c8-406a-4030-b2cb-3507b177a1c9",
+                  "title": "T10 [Crítico] Fuga de datos financieros mediante Power BI",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Information disclosure",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 10,
+                  "score": "9",
+                  "description": "Fuga de datos financieros mediante Power BI. (Impacto: Alto; Probabilidad: Alta; Puntaje: 9; Riesgo inherente: Crítico).",
+                  "mitigation": "Preventivo: Deshabilitar 'Publicar en la web'; seguridad a nivel de fila (RLS); etiquetas de sensibilidad; permisos de workspace mínimos; gobierno de compartición. Detectivo: Registros de actividad de Power BI; alertas DLP; revisión de compartición externa. Correctivo: Quitar el acceso, retirar el contenido publicado y notificar al propietario del dato. Riesgo residual esperado: Bajo (Impacto Medio / Probabilidad Baja; puntaje 2)."
+                }
+              ],
+              "privilegeLevel": "",
+              "isWebApplication": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false
+            }
+          },
+          {
+            "position": {
+              "x": 780,
+              "y": 500
+            },
+            "size": {
+              "width": 170,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "DS01 Base de datos de D365"
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 10,
+            "id": "55e6bbf1-acb2-4880-b650-ddb2a6c18285",
+            "data": {
+              "type": "tm.Store",
+              "name": "DS01 Base de datos de D365",
+              "description": "Datos financieros, de compras y maestros",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "782c8d72-f313-454d-8fc6-ba444b5f4007",
+                  "title": "T09 [Alto] Exposición de datos financieros y de proveedores por permisos excesivos y exportaciones",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 9,
+                  "score": "8",
+                  "description": "Exposición de datos financieros y de proveedores por permisos excesivos y exportaciones. (Impacto: Crítico; Probabilidad: Media; Puntaje: 8; Riesgo inherente: Alto).",
+                  "mitigation": "Preventivo: Seguridad por roles de menor privilegio; restricciones de exportación; etiquetas de sensibilidad y DLP (Microsoft Purview); enmascaramiento de campos sensibles donde aplique. Detectivo: Auditoría de exportaciones masivas; alertas DLP; revisión de accesos a datos sensibles. Correctivo: Revocar accesos, recuperar o eliminar copias exportadas y notificar según la política de incidentes. Riesgo residual esperado: Medio (Impacto Alto / Probabilidad Baja; puntaje 3)."
+                },
+                {
+                  "id": "ed3a5c8f-5039-4c8b-97c9-16a5cc4881d4",
+                  "title": "T20 [Medio] Pérdida o corrupción de datos sin recuperación oportuna",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 20,
+                  "score": "3",
+                  "description": "Pérdida o corrupción de datos sin recuperación oportuna. (Impacto: Alto; Probabilidad: Baja; Puntaje: 3; Riesgo inherente: Medio).",
+                  "mitigation": "Preventivo: Copias y restauración gestionadas por Microsoft; pruebas de recuperación; validaciones previas a importaciones masivas; entornos de prueba. Detectivo: Monitoreo de volúmenes anómalos de cambios y de errores de importación. Correctivo: Restaurar el entorno según el RPO/RTO acordado y conciliar los datos. Riesgo residual esperado: Bajo (Impacto Medio / Probabilidad Baja; puntaje 2)."
+                }
+              ],
+              "isALog": false,
+              "isEncrypted": true,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "storesPII": true,
+              "isWriteOnly": false
+            }
+          },
+          {
+            "position": {
+              "x": 780,
+              "y": 680
+            },
+            "size": {
+              "width": 170,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "DS04 Modelo semántico Power BI"
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 10,
+            "id": "37df6c3a-872f-400d-ade0-0efd5dbbda11",
+            "data": {
+              "type": "tm.Store",
+              "name": "DS04 Modelo semántico Power BI",
+              "description": "Conjunto de datos de reportes",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "0dca1d70-45c8-422c-911c-82e6195b6abb",
+                  "title": "T17 [Bajo] Alteración del modelo semántico que distorsiona reportes financieros",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 17,
+                  "score": "2",
+                  "description": "Alteración del modelo semántico que distorsiona reportes financieros. (Impacto: Medio; Probabilidad: Baja; Puntaje: 2; Riesgo inherente: Bajo).",
+                  "mitigation": "Preventivo: Control de versiones y despliegue controlado; permisos de edición restringidos. Detectivo: Revisión de cambios en el modelo; reconciliación con las cifras del ERP. Correctivo: Restaurar la versión previa y comunicar la corrección. Riesgo residual esperado: Bajo (Impacto Bajo / Probabilidad Baja; puntaje 1)."
+                }
+              ],
+              "isALog": false,
+              "isEncrypted": true,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "storesPII": false,
+              "isWriteOnly": false
+            }
+          },
+          {
+            "position": {
+              "x": 1240,
+              "y": 300
+            },
+            "size": {
+              "width": 120,
+              "height": 120
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "P04 Integración bancaria"
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "id": "44cc7fcf-781d-42c9-b613-9fbf9a1673e1",
+            "data": {
+              "type": "tm.Process",
+              "name": "P04 Integración bancaria",
+              "description": "Middleware de pagos y extractos",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "50083f9d-3a8d-4301-b65a-cb167184e210",
+                  "title": "T13 [Alto] Interrupción de la integración bancaria",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 13,
+                  "score": "6",
+                  "description": "Interrupción de la integración bancaria. (Impacto: Alto; Probabilidad: Media; Puntaje: 6; Riesgo inherente: Alto).",
+                  "mitigation": "Preventivo: Monitoreo de vencimiento de certificados; colas con reintentos y DLQ; redundancia y runbooks de contingencia (carga manual segura en banca en línea). Detectivo: Alertas por mensajes en DLQ, fallos de ejecución y expiración próxima de certificados. Correctivo: Reprocesar mensajes, renovar certificados y activar el procedimiento de contingencia. Riesgo residual esperado: Bajo (Impacto Medio / Probabilidad Baja; puntaje 2)."
+                },
+                {
+                  "id": "d168a1ba-fc0f-40e7-ad22-d7cb86b15030",
+                  "title": "T14 [Alto] Identidad de servicio (app registration) sobre-privilegiada o con secreto expuesto en OData",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 14,
+                  "score": "6",
+                  "description": "Identidad de servicio (app registration) sobre-privilegiada o con secreto expuesto en OData. (Impacto: Alto; Probabilidad: Media; Puntaje: 6; Riesgo inherente: Alto).",
+                  "mitigation": "Preventivo: Autenticación con certificado o identidad administrada; permisos mínimos en D365 para la aplicación; restricción por IP/red; API Management con límites de tasa. Detectivo: Alertas por uso inusual del principal de servicio; revisión de inicios de sesión de aplicaciones. Correctivo: Rotar secretos o certificados de la aplicación, revocar consentimientos y revisar las llamadas realizadas. Riesgo residual esperado: Medio (Impacto Alto / Probabilidad Baja; puntaje 3)."
+                }
+              ],
+              "privilegeLevel": "",
+              "isWebApplication": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false
+            }
+          },
+          {
+            "position": {
+              "x": 1240,
+              "y": 100
+            },
+            "size": {
+              "width": 170,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "DS02 Azure Key Vault"
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 10,
+            "id": "9b1ad228-6b52-49d3-b2cb-55e1329ed53b",
+            "data": {
+              "type": "tm.Store",
+              "name": "DS02 Azure Key Vault",
+              "description": "Certificados y credenciales bancarias",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "91888eca-f273-44b4-a7b2-9d81bbb19022",
+                  "title": "T11 [Alto] Exposición de certificados y credenciales bancarias en Key Vault",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": "8",
+                  "description": "Exposición de certificados y credenciales bancarias en Key Vault. (Impacto: Crítico; Probabilidad: Media; Puntaje: 8; Riesgo inherente: Alto).",
+                  "mitigation": "Preventivo: RBAC de menor privilegio; identidades administradas en lugar de secretos; private endpoints; purge protection y rotación de secretos. Detectivo: Alertas por accesos a secretos fuera de patrón; registros de diagnóstico de Key Vault enviados al SIEM. Correctivo: Revocar y rotar certificados y credenciales; coordinar con el banco el reemplazo de claves. Riesgo residual esperado: Medio (Impacto Crítico / Probabilidad Baja; puntaje 4)."
+                }
+              ],
+              "isALog": false,
+              "isEncrypted": true,
+              "isSigned": false,
+              "storesCredentials": true,
+              "storesInventory": false,
+              "storesPII": false,
+              "isWriteOnly": false
+            }
+          },
+          {
+            "position": {
+              "x": 1240,
+              "y": 600
+            },
+            "size": {
+              "width": 170,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "DS03 Log Analytics / SIEM"
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 10,
+            "id": "46f7e4b5-eb09-4900-9c0b-8f129ede9eee",
+            "data": {
+              "type": "tm.Store",
+              "name": "DS03 Log Analytics / SIEM",
+              "description": "Auditoría, integración y seguridad",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "f841c517-36ac-468a-b20f-b0c6fd4737f5",
+                  "title": "T18 [Medio] Exposición de datos sensibles en logs",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 18,
+                  "score": "4",
+                  "description": "Exposición de datos sensibles en logs. (Impacto: Medio; Probabilidad: Media; Puntaje: 4; Riesgo inherente: Medio).",
+                  "mitigation": "Preventivo: Enmascaramiento de datos sensibles en logs; RBAC mínimo en Log Analytics; política de retención. Detectivo: Revisiones periódicas de accesos a logs; escaneo de datos sensibles. Correctivo: Depurar los logs afectados y restringir accesos. Riesgo residual esperado: Bajo (Impacto Bajo / Probabilidad Baja; puntaje 1)."
+                },
+                {
+                  "id": "a9658163-4d2f-4619-a6d0-7efdee4456a6",
+                  "title": "T19 [Medio] Manipulación o borrado de logs para ocultar actividad fraudulenta",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 19,
+                  "score": "3",
+                  "description": "Manipulación o borrado de logs para ocultar actividad fraudulenta. (Impacto: Alto; Probabilidad: Baja; Puntaje: 3; Riesgo inherente: Medio).",
+                  "mitigation": "Preventivo: Reenvío inmediato al SIEM; almacenamiento inmutable; roles de logs separados de los administradores de la aplicación; retención mínima definida. Detectivo: Alertas por eliminación o cambios de configuración de logging; monitoreo de brechas en la telemetría. Correctivo: Reconstruir evidencia desde fuentes secundarias y reforzar permisos. Riesgo residual esperado: Bajo (Impacto Medio / Probabilidad Baja; puntaje 2)."
+                }
+              ],
+              "isALog": true,
+              "isEncrypted": true,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "storesPII": false,
+              "isWriteOnly": false
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "6b778849-784a-4bf0-80d7-3bfd1aadf120",
+            "source": {
+              "cell": "53a3fe8d-723c-40c8-855d-bf7f0f03486c"
+            },
+            "target": {
+              "cell": "69db3c30-242b-4cab-8772-d4ade8c609e1"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-01 Credenciales y MFA",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-01 Credenciales y MFA",
+              "description": "Criticidad: Crítica",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS / OIDC",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "45d55c88-ff50-4050-bb28-016f50fd5acb",
+            "source": {
+              "cell": "5601dfc9-2a70-470d-8af0-61b9665f3700"
+            },
+            "target": {
+              "cell": "69db3c30-242b-4cab-8772-d4ade8c609e1"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-02 Credenciales y MFA",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-02 Credenciales y MFA",
+              "description": "Criticidad: Alta",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS / OIDC",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "b4df4de5-3581-4b95-8471-d46b9f5ec65f",
+            "source": {
+              "cell": "3c676f41-ec30-414a-bd17-858435556679"
+            },
+            "target": {
+              "cell": "69db3c30-242b-4cab-8772-d4ade8c609e1"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-03 Credenciales privilegiadas y MFA",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-03 Credenciales privilegiadas y MFA",
+              "description": "Criticidad: Crítica",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS / OIDC",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "ddeda424-a835-4f2c-8b13-12bb20b7cdf9",
+            "source": {
+              "cell": "92056324-c1a0-472a-9735-17adc203c4bb"
+            },
+            "target": {
+              "cell": "69db3c30-242b-4cab-8772-d4ade8c609e1"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-04 Credenciales de proveedor (invitado)",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-04 Credenciales de proveedor (invitado)",
+              "description": "Criticidad: Alta",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS / OIDC (Internet)",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "6c2c1d2c-5795-441c-840c-96c451fe11bf",
+            "source": {
+              "cell": "69db3c30-242b-4cab-8772-d4ade8c609e1"
+            },
+            "target": {
+              "cell": "cb629046-ff8e-4d57-b84e-00d27b155490"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-05 Token OIDC / claims",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-05 Token OIDC / claims",
+              "description": "Criticidad: Crítica",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "15e50e6e-df3f-4bf4-b0c4-13e2bd0c1745",
+            "source": {
+              "cell": "69db3c30-242b-4cab-8772-d4ade8c609e1"
+            },
+            "target": {
+              "cell": "ce572f5e-2763-437f-b9f0-280d4593e030"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-06 Token OIDC / claims",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-06 Token OIDC / claims",
+              "description": "Criticidad: Alta",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": "classic"
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "b5f1091b-8826-433b-b708-9176055fb0c0",
+            "source": {
+              "cell": "53a3fe8d-723c-40c8-855d-bf7f0f03486c"
+            },
+            "target": {
+              "cell": "cb629046-ff8e-4d57-b84e-00d27b155490"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-07 Transacciones contables y pagos",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-07 Transacciones contables y pagos",
+              "description": "Criticidad: Crítica",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [
+                {
+                  "id": "dea0dd39-e36c-4174-a16a-1af0851fe506",
+                  "title": "T06 [Alto] Manipulación de transacciones en tránsito o desde un navegador comprometido",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": "6",
+                  "description": "Manipulación de transacciones en tránsito o desde un navegador comprometido. (Impacto: Alto; Probabilidad: Media; Puntaje: 6; Riesgo inherente: Alto).",
+                  "mitigation": "Preventivo: TLS 1.2+ obligatorio; dispositivos administrados y conformes; validaciones de negocio y límites de aprobación; endurecimiento del navegador. Detectivo: Alertas de EDR en endpoints; reglas de anomalía en montos y beneficiarios. Correctivo: Aislar el equipo, revertir o ajustar las transacciones y reforzar la sesión del usuario. Riesgo residual esperado: Medio (Impacto Alto / Probabilidad Baja; puntaje 3)."
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": "classic"
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "8a921686-fc8a-4891-95bf-2bbc00f22fc1",
+            "source": {
+              "cell": "5601dfc9-2a70-470d-8af0-61b9665f3700"
+            },
+            "target": {
+              "cell": "ce572f5e-2763-437f-b9f0-280d4593e030"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-08 Órdenes de compra y datos de proveedor",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-08 Órdenes de compra y datos de proveedor",
+              "description": "Criticidad: Alta",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "e65f3273-a861-4a95-95e3-bd877a81deed",
+            "source": {
+              "cell": "3c676f41-ec30-414a-bd17-858435556679"
+            },
+            "target": {
+              "cell": "cb629046-ff8e-4d57-b84e-00d27b155490"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-09 Configuración, roles y seguridad",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-09 Configuración, roles y seguridad",
+              "description": "Criticidad: Crítica",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": "classic"
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "52cf0273-eb9a-4534-a372-55c6b3c4e513",
+            "source": {
+              "cell": "92056324-c1a0-472a-9735-17adc203c4bb"
+            },
+            "target": {
+              "cell": "ce572f5e-2763-437f-b9f0-280d4593e030"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-10 Confirmaciones de OC y facturas",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-10 Confirmaciones de OC y facturas",
+              "description": "Criticidad: Alta",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS (Internet)",
+              "threats": [
+                {
+                  "id": "03b93b47-3735-4702-893d-8ab3415ca6a6",
+                  "title": "T15 [Medio] Interceptación de datos en tránsito desde proveedores en Internet",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 15,
+                  "score": "4",
+                  "description": "Interceptación de datos en tránsito desde proveedores en Internet. (Impacto: Medio; Probabilidad: Media; Puntaje: 4; Riesgo inherente: Medio).",
+                  "mitigation": "Preventivo: TLS 1.2+ (gestionado por el servicio); HSTS; acceso condicional para externos; guía de seguridad para proveedores. Detectivo: Alertas de inicios de sesión desde ubicaciones inusuales. Correctivo: Restablecer credenciales de la cuenta externa y revisar la información accedida. Riesgo residual esperado: Bajo (Impacto Bajo / Probabilidad Baja; puntaje 1)."
+                },
+                {
+                  "id": "59337a68-6d75-419d-93ad-04d8b2e21bc0",
+                  "title": "T16 [Medio] Abuso o fuerza bruta contra el portal de proveedores",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": "4",
+                  "description": "Abuso o fuerza bruta contra el portal de proveedores. (Impacto: Medio; Probabilidad: Media; Puntaje: 4; Riesgo inherente: Medio).",
+                  "mitigation": "Preventivo: Bloqueo inteligente (smart lockout); límites de tasa; acceso condicional; listas de IP permitidas para integraciones. Detectivo: Alertas por picos de fallos de autenticación. Correctivo: Bloquear orígenes maliciosos y desbloquear cuentas legítimas tras validación. Riesgo residual esperado: Bajo (Impacto Bajo / Probabilidad Baja; puntaje 1)."
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": "classic"
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "a62bd001-e7e5-4bc7-9955-b95b49591730",
+            "source": {
+              "cell": "cb629046-ff8e-4d57-b84e-00d27b155490"
+            },
+            "target": {
+              "cell": "55e6bbf1-acb2-4880-b650-ddb2a6c18285"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-11 Lectura/escritura de datos financieros",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-11 Lectura/escritura de datos financieros",
+              "description": "Criticidad: Crítica",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "Interno Microsoft (cifrado)",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": "classic"
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "40ecc586-aa56-480c-8705-f3451c694d4e",
+            "source": {
+              "cell": "ce572f5e-2763-437f-b9f0-280d4593e030"
+            },
+            "target": {
+              "cell": "55e6bbf1-acb2-4880-b650-ddb2a6c18285"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-12 Lectura/escritura de datos de compras",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-12 Lectura/escritura de datos de compras",
+              "description": "Criticidad: Alta",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "Interno Microsoft (cifrado)",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "f18ca44c-d1c4-4ea5-b2ce-1a981cf7f77b",
+            "source": {
+              "cell": "cb629046-ff8e-4d57-b84e-00d27b155490"
+            },
+            "target": {
+              "cell": "44cc7fcf-781d-42c9-b613-9fbf9a1673e1"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-13 Lote de pago aprobado (OData)",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-13 Lote de pago aprobado (OData)",
+              "description": "Criticidad: Crítica",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS / OData",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": "classic"
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "62eb9127-3674-49c4-9d6e-9387293c4814",
+            "source": {
+              "cell": "44cc7fcf-781d-42c9-b613-9fbf9a1673e1"
+            },
+            "target": {
+              "cell": "31ed1251-abae-4250-9c7c-00b9697340f6"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-14 Instrucciones de pago, acuses y extractos",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-14 Instrucciones de pago, acuses y extractos",
+              "description": "Criticidad: Crítica",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "mTLS / canal bancario (Internet)",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "6aa9ab22-5d31-4c8c-ac8a-f15647502d93",
+            "source": {
+              "cell": "44cc7fcf-781d-42c9-b613-9fbf9a1673e1"
+            },
+            "target": {
+              "cell": "cb629046-ff8e-4d57-b84e-00d27b155490"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-15 Extractos y asientos de conciliación",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-15 Extractos y asientos de conciliación",
+              "description": "Criticidad: Alta",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS / OData",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": "classic"
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "b852fb3c-36ca-4730-a485-934a7419d9ec",
+            "source": {
+              "cell": "44cc7fcf-781d-42c9-b613-9fbf9a1673e1"
+            },
+            "target": {
+              "cell": "9b1ad228-6b52-49d3-b2cb-55e1329ed53b"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-16 Certificados y credenciales",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-16 Certificados y credenciales",
+              "description": "Criticidad: Crítica",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS / Entra ID",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "5fd5f713-6dd0-4122-b6fa-f447c19c9e17",
+            "source": {
+              "cell": "cb629046-ff8e-4d57-b84e-00d27b155490"
+            },
+            "target": {
+              "cell": "46f7e4b5-eb09-4900-9c0b-8f129ede9eee"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-17 Registros de auditoría",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-17 Registros de auditoría",
+              "description": "Criticidad: Media",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "ab7f303a-cdf8-469e-8108-b696f4e331e2",
+            "source": {
+              "cell": "44cc7fcf-781d-42c9-b613-9fbf9a1673e1"
+            },
+            "target": {
+              "cell": "46f7e4b5-eb09-4900-9c0b-8f129ede9eee"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-18 Registros de integración",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-18 Registros de integración",
+              "description": "Criticidad: Media",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "9533c59a-57ea-4ab9-94d2-ee1b403d8d35",
+            "source": {
+              "cell": "cb629046-ff8e-4d57-b84e-00d27b155490"
+            },
+            "target": {
+              "cell": "b91148a0-2c60-4039-9fb4-1df6b8befb3d"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-19 Datos financieros para reportes",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-19 Datos financieros para reportes",
+              "description": "Criticidad: Alta",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "d9f79074-c373-4631-a06d-117953554321",
+            "source": {
+              "cell": "b91148a0-2c60-4039-9fb4-1df6b8befb3d"
+            },
+            "target": {
+              "cell": "37df6c3a-872f-400d-ade0-0efd5dbbda11"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-20 Modelo semántico",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-20 Modelo semántico",
+              "description": "Criticidad: Media",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "Interno Microsoft (cifrado)",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": "classic"
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "61401503-1095-46c8-a8da-a4d423dc5538",
+            "source": {
+              "cell": "670b83b7-3e7d-493c-9f73-6a4a648be326"
+            },
+            "target": {
+              "cell": "b91148a0-2c60-4039-9fb4-1df6b8befb3d"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F1-21 Consulta de reportes",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1-21 Consulta de reportes",
+              "description": "Criticidad: Media",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            }
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "DFD Nivel 2 - Integración bancaria",
+        "diagramType": "STRIDE",
+        "placeholder": "Nuevo diagrama STRIDE",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [
+          {
+            "position": {
+              "x": 20,
+              "y": 240
+            },
+            "size": {
+              "width": 220,
+              "height": 150
+            },
+            "attrs": {
+              "headerText": {
+                "text": "TB01 Red corporativa del cliente"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 1,
+            "id": "8b8fc139-63a5-4a0d-b37e-fcdc4e55f152",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB01 Red corporativa del cliente",
+              "description": "Aprobador de pagos",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 300,
+              "y": 200
+            },
+            "size": {
+              "width": 220,
+              "height": 230
+            },
+            "attrs": {
+              "headerText": {
+                "text": "TB03 Plataforma Microsoft SaaS"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 1,
+            "id": "1bcf45ef-6385-4ccf-8e09-60d080fd854c",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB03 Plataforma Microsoft SaaS",
+              "description": "D365 F&O Pagos y conciliación",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 600,
+              "y": 20
+            },
+            "size": {
+              "width": 860,
+              "height": 720
+            },
+            "attrs": {
+              "headerText": {
+                "text": "TB04 Suscripción Azure del cliente"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 1,
+            "id": "f138be63-f3e6-49cf-9d21-103a76e3748a",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB04 Suscripción Azure del cliente",
+              "description": "Integración bancaria en la suscripción del cliente",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 1540,
+              "y": 240
+            },
+            "size": {
+              "width": 220,
+              "height": 150
+            },
+            "attrs": {
+              "headerText": {
+                "text": "TB05 Banco (tercero)"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": 1,
+            "id": "816ec776-3efb-40a3-ab46-8b02759f2ad8",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB05 Banco (tercero)",
+              "description": "Endpoint bancario",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 50,
+              "y": 280
+            },
+            "size": {
+              "width": 160,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "EE07 Aprobador de pagos (Tesorería)"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 10,
+            "id": "b86c3c81-165a-4adc-b77f-b68aeef6b7bf",
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE07 Aprobador de pagos (Tesorería)",
+              "description": "Aprueba lotes de pago",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "21a1a8b9-a04f-48b1-8b88-0c41faa774e7",
+                  "title": "T28 [Alto] El aprobador niega haber autorizado un lote de pago",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Repudiation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 28,
+                  "score": "6",
+                  "description": "El aprobador niega haber autorizado un lote de pago. (Impacto: Alto; Probabilidad: Media; Puntaje: 6; Riesgo inherente: Alto).",
+                  "mitigation": "Preventivo: Aprobación con identidad nominal y MFA; registro inmutable de aprobación vinculado al hash del lote; flujo de doble aprobación. Detectivo: Revisión de bitácoras de aprobación; conciliación entre aprobaciones y pagos enviados. Correctivo: Reconstruir la evidencia desde logs y ajustar los flujos de aprobación. Riesgo residual esperado: Bajo (Impacto Medio / Probabilidad Baja; puntaje 2)."
+                }
+              ],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 350,
+              "y": 260
+            },
+            "size": {
+              "width": 120,
+              "height": 120
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "P02.1 D365 F&O - Pagos y conciliación"
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "id": "c0d2cd76-82fc-43d2-a778-9f7d7ccf53e3",
+            "data": {
+              "type": "tm.Process",
+              "name": "P02.1 D365 F&O - Pagos y conciliación",
+              "description": "Genera lotes y contabiliza conciliaciones",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "privilegeLevel": "",
+              "isWebApplication": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false
+            }
+          },
+          {
+            "position": {
+              "x": 660,
+              "y": 260
+            },
+            "size": {
+              "width": 120,
+              "height": 120
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "P04.1 Azure Logic Apps (orquestador)"
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "id": "e84bbb1a-4d50-476b-857e-60f6e98ccb85",
+            "data": {
+              "type": "tm.Process",
+              "name": "P04.1 Azure Logic Apps (orquestador)",
+              "description": "Orquesta el flujo de pago",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "866830d8-f2d2-4937-b6c1-f65a33f9830e",
+                  "title": "T24 [Alto] Invocación no autorizada del flujo de Logic Apps",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 24,
+                  "score": "8",
+                  "description": "Invocación no autorizada del flujo de Logic Apps. (Impacto: Crítico; Probabilidad: Media; Puntaje: 8; Riesgo inherente: Alto).",
+                  "mitigation": "Preventivo: Autenticación con Entra ID (OAuth) en el desencadenador; restricción de IP de entrada; API Management; tratar las URL del trigger como secretos. Detectivo: Alertas por ejecuciones fuera de horario o de origen desconocido. Correctivo: Regenerar las claves del trigger, deshabilitar el flujo y revisar las ejecuciones recientes. Riesgo residual esperado: Medio (Impacto Crítico / Probabilidad Baja; puntaje 4)."
+                },
+                {
+                  "id": "ac263af6-6ed9-4b25-be25-7331e05f9be9",
+                  "title": "T31 [Medio] Agotamiento de límites de ejecución por reintentos masivos",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 31,
+                  "score": "4",
+                  "description": "Agotamiento de límites de ejecución por reintentos masivos. (Impacto: Medio; Probabilidad: Media; Puntaje: 4; Riesgo inherente: Medio).",
+                  "mitigation": "Preventivo: Políticas de reintento con backoff; límites de concurrencia; alertas de capacidad. Detectivo: Métricas de ejecuciones fallidas y latencia. Correctivo: Pausar los reintentos, depurar la cola y reprocesar de forma controlada. Riesgo residual esperado: Bajo (Impacto Bajo / Probabilidad Baja; puntaje 1)."
+                }
+              ],
+              "privilegeLevel": "",
+              "isWebApplication": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false
+            }
+          },
+          {
+            "position": {
+              "x": 900,
+              "y": 260
+            },
+            "size": {
+              "width": 120,
+              "height": 120
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "P04.2 Azure Service Bus"
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "id": "ad41dd7f-0dd2-4300-9b0c-ef76c01d4fe2",
+            "data": {
+              "type": "tm.Process",
+              "name": "P04.2 Azure Service Bus",
+              "description": "Cola de pagos con reintentos y DLQ",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "36022b5f-f350-4b8b-8cba-94b5a592cee9",
+                  "title": "T23 [Alto] Inyección de mensajes de pago falsos en Service Bus",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 23,
+                  "score": "8",
+                  "description": "Inyección de mensajes de pago falsos en Service Bus. (Impacto: Crítico; Probabilidad: Media; Puntaje: 8; Riesgo inherente: Alto).",
+                  "mitigation": "Preventivo: Autenticación con Entra ID/RBAC sin SAS; private endpoints; deshabilitar acceso público; validar origen y firma del mensaje. Detectivo: Alertas por mensajes de origen desconocido; monitoreo de métricas de la cola. Correctivo: Rotar o deshabilitar claves, purgar mensajes sospechosos y revisar los pagos generados. Riesgo residual esperado: Medio (Impacto Crítico / Probabilidad Baja; puntaje 4)."
+                }
+              ],
+              "privilegeLevel": "",
+              "isWebApplication": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false
+            }
+          },
+          {
+            "position": {
+              "x": 1160,
+              "y": 260
+            },
+            "size": {
+              "width": 120,
+              "height": 120
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "P04.3 Conector bancario (firma y cifrado)"
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "id": "d6fdb1a8-a7cf-4415-8931-dae900785b6a",
+            "data": {
+              "type": "tm.Process",
+              "name": "P04.3 Conector bancario (firma y cifrado)",
+              "description": "Firma, cifra y transmite instrucciones",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "4099ea1e-8dda-4174-a06c-7c85f4ad38e6",
+                  "title": "T25 [Crítico] Exposición de datos de pago en el historial de ejecución",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Information disclosure",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 25,
+                  "score": "9",
+                  "description": "Exposición de datos de pago en el historial de ejecución. (Impacto: Alto; Probabilidad: Alta; Puntaje: 9; Riesgo inherente: Crítico).",
+                  "mitigation": "Preventivo: Activar entradas y salidas seguras (secure inputs/outputs); RBAC restringido al historial; enmascaramiento; retención mínima. Detectivo: Revisión de accesos al historial de ejecuciones; alertas de lectura masiva. Correctivo: Purgar el historial afectado y corregir la configuración. Riesgo residual esperado: Bajo (Impacto Medio / Probabilidad Baja; puntaje 2)."
+                },
+                {
+                  "id": "b966b372-1f72-4a16-b689-0d24dcc9baf5",
+                  "title": "T26 [Alto] Uso indebido de la clave de firma por una identidad no autorizada",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 26,
+                  "score": "8",
+                  "description": "Uso indebido de la clave de firma por una identidad no autorizada. (Impacto: Crítico; Probabilidad: Media; Puntaje: 8; Riesgo inherente: Alto).",
+                  "mitigation": "Preventivo: Permisos de firma solo para la identidad del conector; claves no exportables (HSM / Key Vault Premium); aprobación para cambios de acceso. Detectivo: Alertas por operaciones de firma fuera de patrón; revisión de asignaciones de roles de Key Vault. Correctivo: Revocar el acceso, rotar la clave y notificar al banco. Riesgo residual esperado: Medio (Impacto Crítico / Probabilidad Baja; puntaje 4)."
+                }
+              ],
+              "privilegeLevel": "",
+              "isWebApplication": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false
+            }
+          },
+          {
+            "position": {
+              "x": 900,
+              "y": 540
+            },
+            "size": {
+              "width": 120,
+              "height": 120
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "P04.4 Procesador de extractos y conciliación"
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "id": "3425bb42-ad88-4ea5-9f5c-1a9830384db0",
+            "data": {
+              "type": "tm.Process",
+              "name": "P04.4 Procesador de extractos y conciliación",
+              "description": "Genera asientos de conciliación",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "dd706f46-7ca5-4acf-a496-f45de7f9a7ec",
+                  "title": "T30 [Medio] Reglas de conciliación débiles permiten ocultar pagos fraudulentos",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 30,
+                  "score": "3",
+                  "description": "Reglas de conciliación débiles permiten ocultar pagos fraudulentos. (Impacto: Alto; Probabilidad: Baja; Puntaje: 3; Riesgo inherente: Medio).",
+                  "mitigation": "Preventivo: Reglas de coincidencia estrictas (monto, fecha, beneficiario); revisión manual de excepciones; SoD entre quien paga y quien concilia. Detectivo: Reporte de partidas conciliadas automáticamente con baja certeza. Correctivo: Revisar las conciliaciones del periodo y ajustar las reglas. Riesgo residual esperado: Bajo (Impacto Medio / Probabilidad Baja; puntaje 2)."
+                }
+              ],
+              "privilegeLevel": "",
+              "isWebApplication": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false
+            }
+          },
+          {
+            "position": {
+              "x": 660,
+              "y": 80
+            },
+            "size": {
+              "width": 170,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "DS03 Log Analytics / SIEM"
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 10,
+            "id": "019c2edc-6eca-4628-8e97-b29f8d381e1c",
+            "data": {
+              "type": "tm.Store",
+              "name": "DS03 Log Analytics / SIEM",
+              "description": "Auditoría e integración",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "isALog": true,
+              "isEncrypted": true,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "storesPII": false,
+              "isWriteOnly": false
+            }
+          },
+          {
+            "position": {
+              "x": 1160,
+              "y": 80
+            },
+            "size": {
+              "width": 170,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "DS02 Azure Key Vault"
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 10,
+            "id": "74a56fac-b3d1-4271-a694-30b150064e30",
+            "data": {
+              "type": "tm.Store",
+              "name": "DS02 Azure Key Vault",
+              "description": "Certificados y credenciales",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "isALog": false,
+              "isEncrypted": true,
+              "isSigned": false,
+              "storesCredentials": true,
+              "storesInventory": false,
+              "storesPII": false,
+              "isWriteOnly": false
+            }
+          },
+          {
+            "position": {
+              "x": 1160,
+              "y": 560
+            },
+            "size": {
+              "width": 170,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "DS05 Almacenamiento temporal (Blob)"
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 10,
+            "id": "fff2e236-434e-4812-bc21-8e0c32d354aa",
+            "data": {
+              "type": "tm.Store",
+              "name": "DS05 Almacenamiento temporal (Blob)",
+              "description": "Extractos antes de conciliar",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "e2441607-f131-4a68-836c-602ce7f0a8dc",
+                  "title": "T29 [Medio] Alteración de extractos bancarios en el almacenamiento temporal",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 29,
+                  "score": "3",
+                  "description": "Alteración de extractos bancarios en el almacenamiento temporal. (Impacto: Alto; Probabilidad: Baja; Puntaje: 3; Riesgo inherente: Medio).",
+                  "mitigation": "Preventivo: Almacenamiento inmutable (WORM); hash del archivo recibido; private endpoint; acceso mínimo. Detectivo: Comparación de hashes y de saldos con el banco. Correctivo: Volver a descargar el extracto del banco y reprocesar. Riesgo residual esperado: Bajo (Impacto Medio / Probabilidad Baja; puntaje 2)."
+                }
+              ],
+              "isALog": false,
+              "isEncrypted": true,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "storesPII": false,
+              "isWriteOnly": false
+            }
+          },
+          {
+            "position": {
+              "x": 1570,
+              "y": 280
+            },
+            "size": {
+              "width": 160,
+              "height": 70
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "label": {
+                "text": "EE06 Banco"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 10,
+            "id": "ecf97e60-dc40-4d95-a87c-6192a446c1d5",
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE06 Banco",
+              "description": "Recibe instrucciones de pago",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "4035f50c-bf69-4457-a3b6-9ee91b90436a",
+                  "title": "T27 [Medio] Suplantación del endpoint del banco en el canal de transmisión",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 27,
+                  "score": "4",
+                  "description": "Suplantación del endpoint del banco en el canal de transmisión. (Impacto: Crítico; Probabilidad: Baja; Puntaje: 4; Riesgo inherente: Medio).",
+                  "mitigation": "Preventivo: mTLS con validación del certificado del banco; fijación de certificados (pinning); endpoints fijos y verificados. Detectivo: Alertas por cambios de endpoint o errores de validación de certificado. Correctivo: Suspender envíos, validar el canal con el banco y rotar credenciales. Riesgo residual esperado: Medio (Impacto Crítico / Probabilidad Baja; puntaje 4)."
+                }
+              ],
+              "providesAuthentication": false
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "b1180d2d-c5d8-425b-8217-eb1c22f52c80",
+            "source": {
+              "cell": "b86c3c81-165a-4adc-b77f-b68aeef6b7bf"
+            },
+            "target": {
+              "cell": "c0d2cd76-82fc-43d2-a778-9f7d7ccf53e3"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F2-01 Aprobación de lote de pago",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F2-01 Aprobación de lote de pago",
+              "description": "Criticidad: Crítica",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "15ae28c1-1013-4db9-b947-697826027fe8",
+            "source": {
+              "cell": "c0d2cd76-82fc-43d2-a778-9f7d7ccf53e3"
+            },
+            "target": {
+              "cell": "e84bbb1a-4d50-476b-857e-60f6e98ccb85"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F2-02 Lote de pago aprobado (OData)",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F2-02 Lote de pago aprobado (OData)",
+              "description": "Criticidad: Crítica",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS / OData",
+              "threats": [
+                {
+                  "id": "a7b5bf4d-30df-4304-8ced-b31e61d52370",
+                  "title": "T22 [Alto] Alteración del lote de pago aprobado (beneficiario, monto o cuenta)",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 22,
+                  "score": "8",
+                  "description": "Alteración del lote de pago aprobado (beneficiario, monto o cuenta). (Impacto: Crítico; Probabilidad: Media; Puntaje: 8; Riesgo inherente: Alto).",
+                  "mitigation": "Preventivo: Hash o firma del lote en origen y verificación en el conector; TLS; comparación de totales de control; mínimo privilegio sobre Logic Apps. Detectivo: Conciliación de totales entre D365, middleware y banco; alertas por discrepancias. Correctivo: Bloquear el lote, solicitar la devolución al banco e investigar el punto de alteración. Riesgo residual esperado: Medio (Impacto Crítico / Probabilidad Baja; puntaje 4)."
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "82337e14-9143-4b1c-81e5-2792bc03cb7c",
+            "source": {
+              "cell": "e84bbb1a-4d50-476b-857e-60f6e98ccb85"
+            },
+            "target": {
+              "cell": "ad41dd7f-0dd2-4300-9b0c-ef76c01d4fe2"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F2-03 Mensaje de pago",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F2-03 Mensaje de pago",
+              "description": "Criticidad: Crítica",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS / AMQP",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "87cdeaef-e46e-4d95-8f1d-154f88d6faf0",
+            "source": {
+              "cell": "ad41dd7f-0dd2-4300-9b0c-ef76c01d4fe2"
+            },
+            "target": {
+              "cell": "d6fdb1a8-a7cf-4415-8931-dae900785b6a"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F2-04 Mensaje de pago",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F2-04 Mensaje de pago",
+              "description": "Criticidad: Crítica",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS / AMQP",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": "classic"
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "2307b22e-cb1f-4731-937e-39bb709ddd51",
+            "source": {
+              "cell": "d6fdb1a8-a7cf-4415-8931-dae900785b6a"
+            },
+            "target": {
+              "cell": "74a56fac-b3d1-4271-a694-30b150064e30"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F2-05 Solicitud de firma / certificado",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F2-05 Solicitud de firma / certificado",
+              "description": "Criticidad: Crítica",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS / Entra ID",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "8225eb74-836b-42ce-8493-84bdd044809e",
+            "source": {
+              "cell": "d6fdb1a8-a7cf-4415-8931-dae900785b6a"
+            },
+            "target": {
+              "cell": "ecf97e60-dc40-4d95-a87c-6192a446c1d5"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F2-06 Instrucción de pago firmada",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F2-06 Instrucción de pago firmada",
+              "description": "Criticidad: Crítica",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "mTLS / canal bancario (Internet)",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "2bd66785-897f-4ee6-b332-5b829ad94fe8",
+            "source": {
+              "cell": "ecf97e60-dc40-4d95-a87c-6192a446c1d5"
+            },
+            "target": {
+              "cell": "d6fdb1a8-a7cf-4415-8931-dae900785b6a"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F2-07 Acuse de estado y extracto",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F2-07 Acuse de estado y extracto",
+              "description": "Criticidad: Alta",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "mTLS / canal bancario (Internet)",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "4babedc0-0bca-4e7f-bb8b-758ab456a420",
+            "source": {
+              "cell": "d6fdb1a8-a7cf-4415-8931-dae900785b6a"
+            },
+            "target": {
+              "cell": "fff2e236-434e-4812-bc21-8e0c32d354aa"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F2-08 Extracto bancario",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F2-08 Extracto bancario",
+              "description": "Criticidad: Alta",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "033141be-6d48-46de-aeab-1b6b4777cfe0",
+            "source": {
+              "cell": "fff2e236-434e-4812-bc21-8e0c32d354aa"
+            },
+            "target": {
+              "cell": "3425bb42-ad88-4ea5-9f5c-1a9830384db0"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F2-09 Extracto para conciliación",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F2-09 Extracto para conciliación",
+              "description": "Criticidad: Alta",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "9e56d55c-4cbc-45af-b4f5-eee765a9d667",
+            "source": {
+              "cell": "3425bb42-ad88-4ea5-9f5c-1a9830384db0"
+            },
+            "target": {
+              "cell": "c0d2cd76-82fc-43d2-a778-9f7d7ccf53e3"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F2-10 Asientos de conciliación",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F2-10 Asientos de conciliación",
+              "description": "Criticidad: Alta",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS / OData",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": {
+                  "name": ""
+                }
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "eab24c0d-4970-4d97-af8a-06d431ba85dd",
+            "source": {
+              "cell": "e84bbb1a-4d50-476b-857e-60f6e98ccb85"
+            },
+            "target": {
+              "cell": "019c2edc-6eca-4628-8e97-b29f8d381e1c"
+            },
+            "vertices": [],
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "F2-11 Registros de ejecución",
+                    "font-size": 10
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F2-11 Registros de ejecución",
+              "description": "Criticidad: Media",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            }
+          }
+        ]
+      }
+    ],
+    "diagramTop": 3,
+    "reviewer": "",
+    "threatTop": 31
+  }
+}
